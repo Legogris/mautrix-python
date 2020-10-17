@@ -59,6 +59,7 @@ class Program:
                  description: Optional[str] = None, command: Optional[str] = None,
                  version: Optional[str] = None, config_class: Optional[Type[BaseFileConfig]] = None
                  ) -> None:
+        print("DDD", file=sys.stderr)
         if module:
             self.module = module
         if name:
@@ -80,13 +81,17 @@ class Program:
         Prepare and run the program. This is the main entrypoint and the only function that should
         be called manually.
         """
+        print("EEE", file=sys.stderr)
         self._prepare()
+        print("GGG", file=sys.stderr)
         self._run()
 
     def _prepare(self) -> None:
         start_ts = time()
 
+        print("HHH", file=sys.stderr)
         self.preinit()
+        print("III", file=sys.stderr)
 
         self.log.info(f"Initializing {self.name} {self.version}")
         try:
@@ -106,9 +111,13 @@ class Program:
         self.prepare_arg_parser()
         self.args = self.parser.parse_args()
 
+        print("XXX", file=sys.stderr)
         self.prepare_config()
+        print("YYY", file=sys.stderr)
         self.prepare_log()
+        print("ZZZ", file=sys.stderr)
         self.check_config()
+        print("###", file=sys.stderr)
 
     def prepare_arg_parser(self) -> None:
         """Pre-init lifecycle method. Extend this if you want custom command-line arguments."""

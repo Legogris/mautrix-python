@@ -31,6 +31,7 @@ try:
 except ImportError:
     uvloop = None
 
+print("AAA", file=sys.stderr)
 
 class Bridge(Program, ABC):
     db: 'Engine'
@@ -52,6 +53,7 @@ class Bridge(Program, ABC):
                  matrix_class: Type[BaseMatrixHandler] = None,
                  state_store_class: Type[ASStateStore] = None) -> None:
         super().__init__(module, name, description, command, version, config_class)
+        print("BBB", file=sys.stderr)
         if real_user_content_key:
             self.real_user_content_key = real_user_content_key
         if matrix_class:
@@ -70,6 +72,7 @@ class Bridge(Program, ABC):
 
     def preinit(self) -> None:
         super().preinit()
+        print("CCC", file=sys.stderr)
         if self.args.generate_registration:
             self.generate_registration()
             sys.exit(0)
