@@ -139,6 +139,7 @@ class Program:
     def load_and_update_config(self) -> None:
         self.config.load()
         try:
+            print(self.args, file=sys.stderr)
             self.config.update(save=not self.args.no_update)
         except BaseMissingError:
             self.log.exception("Failed to read base config. Try specifying the correct path with "
